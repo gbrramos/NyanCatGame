@@ -16,7 +16,7 @@ nyan = pygame.image.load('img/nyan.gif')
 back_size = pygame.transform.scale(back,(800,600))
 nyan_small = pygame.transform.scale(nyan,(150,100))
 
-music = pygame.mixer.music.load('musics/bg-sound-nyan-trap-remix.mp3')
+music = pygame.mixer.music.load('tmp/bg-sound-nyan-trap-remix.mp3')
 pygame.mixer.music.set_volume(0.07)
 pygame.mixer.music.get_volume()
 pygame.mixer.music.play(10)
