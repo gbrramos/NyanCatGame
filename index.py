@@ -7,12 +7,24 @@ pygame.font.init()
 window = pygame.display.set_mode((800,600))
 pygame.display.set_caption("Nyan Cat's New Adventure")
 
-x = 328
-y = 276
+xNyan = 328
+yNyan = 276
+
+xObsTop = 780
+yObsTop = 100
+
+xObsMid = 900
+yObsMid = 300
+
+xObsBot = 780
+yObsBot = 450
 vel = 12
 
 back = pygame.image.load('img/bg.jpg')
 nyan = pygame.image.load('img/nyan.gif')
+obs = pygame.image.load('img/meteoro.png')
+
+obs_small = pygame.transform.scale(obs,(120,120))
 back_size = pygame.transform.scale(back,(800,600))
 nyan_small = pygame.transform.scale(nyan,(150,100))
 
@@ -26,6 +38,12 @@ while open_window:
 
     pygame.time.delay(50)
 
+    window.blit(back_size,(0,0))
+    window.blit(nyan_small,(xNyan,yNyan))
+    window.blit(obs_small,(xObsTop,yObsTop))
+    window.blit(obs_small,(xObsMid,yObsMid))
+    window.blit(obs_small,(xObsBot,yObsBot))
+
     for ev in pygame.event.get():
 
         if ev.type == pygame.QUIT:
@@ -33,18 +51,33 @@ while open_window:
 
     commands = pygame.key.get_pressed()
     if commands[pygame.K_UP] or commands[pygame.K_w]:
-        y = y - vel
+        yNyan = yNyan - vel
     if commands[pygame.K_DOWN] or commands[pygame.K_s]:
-        y = y + vel
+        yNyan = yNyan + vel
     if commands[pygame.K_RIGHT] or commands[pygame.K_d]:
-        x = x + vel
+        xNyan = xNyan + vel
     if commands[pygame.K_LEFT] or commands[pygame.K_a]:
-        x = x - vel    
-    window.blit(back_size,(0,0))
-    window.blit(nyan_small,(x,y))
+        xNyan = xNyan - vel   
 
-    strX = 'X: '+str(x)
-    strY = 'Y: '+str(y)
+    if xObsTop > -100:
+        xObsTop = xObsTop - 20
+    else:
+        xObsTop = 780
+
+    if xObsMid > -100:
+        xObsMid = xObsMid - 20
+    else:
+        xObsMid = 900 
+
+    if xObsBot > -100:
+        xObsBot = xObsBot - 20
+    else:
+        xObsBot = 780     
+
+    
+
+    strX = 'X: '+str(xNyan)
+    strY = 'Y: '+str(yNyan)
 
     fontX = pygame.font.SysFont(strX, 30)      
     fontY = pygame.font.SysFont(strY, 30)                
